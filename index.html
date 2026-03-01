@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>大数据可视化与可视分析 - Data Visualization and Visual Analysis of Big Data</title>
+  <meta name="robots" content="index,follow">
+  <link rel="stylesheet" type="text/css" href="assets/css/fonts.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  <script src="assets/js/jquery.js"></script>
+  <script src="assets/js/bootstrap.min.js"></script>
+  <script>
+    var toggleReading = function() {
+      $(".reading").toggleClass('hidden');
+    }
+  </script>
+</head>
+<body data-spy="scroll" data-target=".navbar" id="about">
+  <div class="content">
+    <div class="title">
+      大数据可视化与可视分析 2026年春季课程（本科生）
+    </div>
+    <div class="band"></div>
+    <script>
+      $(function() {
+        var thumbs = [
+          '1minard', '2va', '3perception', '4hd', '5treemap', '6nodetrix',
+          '7vegalite', '8interaction', '9wordcloud', '10immersive',
+          '11tablelens', '12geospatial'
+        ];
+        for (var i = 0; i < thumbs.length; i++) {
+          $(".band").append('<a href="" class="thumb" style="background-image:url(images/' + thumbs[i] + '.png)" title=' + thumbs[i] + '></a>');
+          if (i === (thumbs.length / 2 - 1)) {
+            $(".band").append("<br />")
+          }
+        }
+      });
+    </script>
+    <br>
+    <div class="sidebar">
+      <div>
+        <h1>授课教师</h1>
+        <div style="margin-bottom: 0.8em;">
+          <span class="person" href="">李国政</span>
+          <small></small>
+        </div>
+      </div>
+      <div>
+        <h1>课程助教</h1>
+        <div style="margin-bottom: 0.8em;">
+          <span class="person">陈麒羊</span>
+          <small></small>
+        </div>
+        <div style="margin-bottom: 0.8em;">
+          <span class="person">王兴启</span>
+          <small></small>
+        </div>
+      </div>
+      <div data-spy="affix" data-offset-top="660" class="navbar affix">
+        <div class="affix-child">
+          <b>NUM</b>
+        </div>
+        <ul class="menu nav">
+          <li class="">
+            <a href="#about">关于</a>
+          </li>
+          <li class="">
+            <a href="#texts">教科书</a>
+          </li>
+          <li class="">
+            <a href="#objectives">学习目标</a>
+          </li>
+          <li class="active">
+            <a href="#schedule">课程表</a>
+            <ul class="nav menu inline active-child">
+              <li class=""><a href="#week1">1</a></li>
+              <li class=""><a href="#week2">2</a></li>
+              <li class=""><a href="#week3">3</a></li>
+              <li class=""><a href="#week4">4</a></li>
+              <li class=""><a href="#week5">5</a></li>
+              <li class=""><a href="#week6">6</a></li>
+              <li class="active"><a href="#week7">7</a></li>
+              <li class=""><a href="#week8">8</a></li>
+              <li><a href="#week9">9</a></li>
+              <li><a href="#week10">10</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#requirements">作业</a>
+            <ul class="nav menu inline" id="requirements-sub">
+              <li><a href="#participation" data-toggle="tooltip" title="Class Participation">编程作业</a></li>
+              <li><a data-toggle="tooltip" title="Assignment 1" href="">A1</a></li>
+              <li><a data-toggle="tooltip" title="Assignment 2" href="">A2</a></li>
+              <li><a data-toggle="tooltip" title="Assignment 3" href="">A3</a></li>
+              <li><a data-toggle="tooltip" title="Final Project" href="">FP</a></li>
+            </ul>
+            <script>
+              $(function() {
+                $('[rel="tooltip"]').tooltip();
+              });
+            </script>
+          </li>
+          <li>
+            <a href="resources.html">资源</a>
+            <a href="#resources"></a>
+            <!-- trick to make scrollspy to work-->
+          </li>
+          <li>
+            Q&amp;A（ED）
+          </li>
+        </ul>
+      </div>
+    </div>
+    <br>
+    <div class="article">
+      <p>
+        在当今信息爆炸的时代，数据量的迅猛增长给人类的认知能力带来了前所未有的挑战。
+        <b>面对日益增长的数据，人类的感知能力却没有得到相应的提升，因此如何支持用户有效地理解、分析和使用数据变得尤为重要。</b>
+        数据可视化作为一种强有力的工具，可以帮助我们应对信息过载的问题。
+      </p>
+      <p>
+        通过精心设计的视觉编码，数据可视化能够将复杂的数据信息转化为直观的形式，从而减轻用户进行认知计算的负担。
+        数据可视化不仅能提高数据的理解度，还能增强记忆效果，帮助用户做出更加准确和高效的决策。
+        特别是在大数据时代，数据量庞大、数据类型多样，传统的分析方法已难以胜任，而数据可视化的方式则能够将复杂的关系以及趋势通过清晰、易懂的方式呈现出来。
+      </p>
+      <p>
+        此外，数据可视化还能够促进更广泛的受众参与数据分析并且高效的传递数据分析得到的发现。
+        在传统的数据分析中，往往只有专业人士能够理解和操作复杂的数据信息，而通过可视化的呈现方式，即使是非专业的受众，
+        也能通过图形化和交互式的方式轻松理解数据背后的含义，进而参与到分析和决策中。
+        这种方式不仅提高了数据分析的普及性，还促进了多样化的思想碰撞和创新。
+      </p>
+      <p>
+        因此，数据可视化不仅是帮助人们理解和分析数据的工具，更是促进跨学科、跨领域沟通与协作的桥梁，尤其在大数据时代，其重要性愈加突出。
+        通过系统地学习数据可视化的课程，学生能够掌握如何利用视觉方式表达数据、传达信息，以及如何通过视觉思维促进更有效的决策和创新。
+      </p>
+      <p>
+        在本课程中，学生将学习基于图形设计、感知心理学和认知科学原理的设计有效可视化形式和算法。
+        学生将训练如何使用
+        <a href="https://vega.github.io/vega-lite/">Vega-Lite</a>
+        和 <a href="https://d3js.org/">D3.js</a>
+        可视化编程框架设计和构建网页端的交互式可视化。
+        学生将探索如何使用氛围编程（<a href="https://vibe-coding.com/">vibe coding</a>）的方式快速设计和实现可视化。
+      </p>
+      <p>
+        除课堂讨论与学习，学生将完成可视化设计作业和数据分析作业以及一个课程项目，学生将通过交互式网站或者视频演示形式在课程最后一节课程分享其最终项目的成果。
+      </p>
+
+      <h2 id="texts">教科书</h2>
+      <ul>
+        <li>《Web交互式数据可视化(第2版)》；Scott Murray；O'Reilly 出版社 </li>
+        <li>《大数据可视化与可视分析》；陈思明，陶钧，陆旻，李国政；科学出版社 （coming soon）</li>
+      </ul>
+
+      <h2 id="objectives">学习目标与要求</h2>
+      本课程旨在为学生提供理解和扩展当前数据可视化领域尖端技术的必要基础。课程结束时，学生将获得：
+      <br>
+      <ul>
+        <li>对关键可视化技术和理论的理解，包括数据模型、图形感知以及视觉编码和交互方法。</li>
+        <li>接触常见数据类型及其相应的分析任务，包括多维数据、层次数据、时序数据、网络数据和地理空间数据。</li>
+        <li>学习构建和评估可视化交互系统的实际经验，尤其是借助氛围编程的方法实现敏捷构建可视化交互系统。</li>
+      </ul>
+
+      <h2 id="schedule">日程与阅读材料</h2>
+      <script type="text/javascript">
+        $('#schedule-menu').affix({
+          offset: {
+            top: $('#schedule').offset().top,
+            bottom: $('#schedule').offset().top + $('#schedule').height()
+          }
+        });
+      </script>
+
+      <h3 id="week1">第一周</h3>
+      <div class="day" id="lec-value">
+        <div> 周一 3/2 课程介绍
+          <p>本节课将介绍大数据可视化与可视分析的概念、发展以及典型案例，帮助同学们了解数据可视化与可视分析的重要性；</p>
+          <small class="pull-right">
+            <a href="" class="link link-slides">幻灯片</a>
+          </small>
+        </div>
+        <ul class="reading">
+          <li class="required">
+            <a href="https://observablehq.com/@uwdata/introduction-to-vega-lite-json">Vega-Lite简介（JSON 版本）</a>
+          </li>
+          <li class="required">
+            <a href="https://www.nature.com/articles/s41598-017-11873-0">论文：The Value of Visualization</a>
+          </li>
+        </ul>
+      </div>
+
+      <h3 id="week2">第二周</h3>
+      <div class="day" id="lec-design">
+        <div>
+          周一 3/9 视觉感知与认知
+          <p>本节课将介绍视觉感知与认知的基本原理，以及如何利用这些原理设计有效的可视化形式。</p>
+          <small class="pull-right">
+            <a href="" class="link link-slides">幻灯片</a>
+          </small>
+        </div>
+        <div class="assignment">布置<a href="assignment/assignment1.html">作业1: ”好坏“可视化（截止日期：周日 3/21，时间为2周）</a></div>
+        <ul class="reading">
+        </ul>
+      </div>
+
+      <h3 id="week3">第三周</h3>
+      <div class="day" id="lec-eda">
+        <div>
+          周一 3/16 可视化工具与可视化编程
+          <p>本节课将介绍可视化工具与可视化编程的基本原理，以及如何利用这些原理设计有效的可视化形式，包括无需编程的可视化构建方法，可视化的编程库，以及基于vibe coding的可视化编程</p>
+          <small class="pull-right">
+            <a href="" class="link link-slides">幻灯片</a>
+          </small>
+        </div>
+        <ul class="reading">
+        </ul>
+      </div>
+
+      <h3 id="week4">第四周</h3>
+      <div class="day" id="lec-interaction">
+        <div>
+          周一 3/23 表格数据与高维数据可视化
+          <p> 本节课将介绍表格数据与高维数据可视化的基本原理，以及如何利用这些原理设计有效的可视化形式。 </p>
+          <div class="assignment">布置<a href="assignment/assignment2.html">作业2: 交互式可视化（截止日期：周日 4/12，时间为3周）</a></div>
+          <small class="pull-right">
+            <a class="link link-slides">幻灯片</a>
+          </small>
+        </div>
+        <ul class="reading"></ul>
+      </div>
+
+      <h3 id="week5">第五周</h3>
+      <div class="day" id="lec-software">
+        <div>
+          周一 3/30  图数据与层次数据可视化
+          <p>本节课将介绍关系型数据，包括图数据与层次数据可视化的基本原理，以及如何利用这些原理设计有效的可视化形式。</p>
+          <div class="assignment"><a href="assignment/final_project.html">期末大作业</a>提交选题、数据集与人员名单</div>
+          <small class="pull-right">
+            <a class="link link-slides">幻灯片</a>
+          </small>
+        </div>
+        <ul class="reading"></ul>
+      </div>
+
+      <h3 id="week6">第六周（清明节放假 Happy Vacation!）</h3>
+
+
+      <h3 id="week7">第七周</h3>
+      <div class="day" id="web-tutorial">
+        <div>
+          周一 4/13 时间与空间数据可视化
+          <p>本节课将介绍时间与空间数据可视化的基本原理，以及如何利用这些原理设计有效的可视化形式。</p>
+          <small class="pull-right">
+          </small>
+        </div>
+      </div>
+
+      <h3 id="week8">第八周</h3>
+      <div class="day" id="lec-perception">
+        <div>
+          周一 4/20 可视化交互、动画、颜色与经验法则
+          <p>本节课将介绍可视化交互、动画、颜色与经验法则的基本原理，以及如何利用这些原理设计有效的可视化形式。</p>
+          <small class="pull-right">
+            <a class="link link-slides">幻灯片</a>
+          </small>
+        </div>
+      </div>
+
+      <h3 id="week9">第九周</h3>
+      <div class="day" id="lec-trees">
+        <div>
+          周一 4/27 可视化前沿技术，包括人工智能驱动的可视化，沉浸式数据可视化
+          <p>本节课将介绍可视化前沿技术，包括人工智能驱动的可视化，沉浸式数据可视化。</p>
+          <div class="assignment"><a href="assignment/final_project.html">期末大作业</a>中间结果交流讨论</div>
+          <small class="pull-right">
+            <a class="link link-slides">幻灯片</a>
+          </small>
+        </div>
+      </div>
+
+      <h3 id="week10">第十周（劳动节放假 Happy Vacation!）</h3>
+      <h3 id="week11">第十一周</h3>
+      <div class="day" id="lec-trees">
+        <div>
+          周一 5/11 课堂最终展示汇报
+          <p>本节课将由同学们进行课程作业的最终展示汇报</p>
+          <small class="pull-right">
+            <a class="link link-slides">幻灯片</a>
+          </small>
+        </div>
+      </div>
+
+      <h2 id="requirements">作业</h2>
+      <ul>
+        <li><a href="participation.html">课堂参与 10%</a></li>
+        <li><a href="assignment/assignment1.html">作业1：“好坏"可视化 25%</a></li>
+        <li><a href="assignment/assignment2.html">作业2：交互式可视化 25%</a></li>
+        <li><a href="assignment/final_project.html">期末项目：40%</a></li>
+      </ul>
+      <h2>课堂成绩</h2>
+      <p>
+        本课程满分为100分，学分为2分。
+        课程成绩会根据课堂参与、作业和期末项目成绩进行计算。
+        根据课程的往年成绩，均分一般为90分左右；往年的最高分为99/100分。
+      </p>
+      <h2>课堂参与</h2>
+      <p>
+        本课程的课堂参与占比10%，同学们需要保证课堂出勤并阅读指定文献。
+        课堂上我们将假定各位已完成当日阅读任务。
+        允许学生因病或其他正当理由缺课，<strong>但需要提前请假</strong>。
+        鼓励同学们参与课堂活动，包括主动回答问题以及主动提问问题，积极参与课堂讨论的同学会获得基础分数的额外加分。
+        同学们可将自己的课堂参与记录登记在<a href="https://docs.qq.com/sheet/DQWJiZXFtcUdHYXhS?tab=BB08J2">在线文档</a>上。
+      </p>
+
+      <h2 id="participation">教学活动</h2>
+      <p>重要通知：我们将通过微信群发送所有课程通知。</p>
+      <p>作业：本科课程将会有两次作业，两次作业都是为本课程的最终项目做准备。这些作业旨在让学生体验设计，实现和评估可视化的完成过程，课程的每个阶段会有对应需要完成的作业。</p>
+      <p>期末项目：在课程结束需提交一个团队项目（团队人数为：1-4人，严格保持上述人数限制），团队项目设有定期里程碑。课程期末项目的目标是识别一个新颖、有趣且具有挑战性的可视化解决真实的交互式数据分析问题，并将课堂上所学到的技术和技能应用于解决这一问题。学生可以自由选择感兴趣的主题领域作为期末项目的主题。</p>
+
+      <h3>政策</h3>
+      <p>同学们尽量避免迟交自己的作业，迟交政策：超过课程作业的截止日期，我们将对每迟交一天的作业扣10%的分数</p>
+      <p>生成式人工智能：本课程中的所有可视化设计都应是同学们自己设计和深思熟虑的结果。如果你受到第三方作品的启发，可以借鉴设计理念，甚至示例代码，需要在报告中引用来源，并说明你如何以及到什么程度借鉴了每个来源。推荐大家使用人工智能进行代码实现的辅助，但是高效使用的前提仍然是你需要了解基本的代码执行逻辑。同学们需要自己撰写作业报告，授课教师与助教不会根据语法或流畅性来评分，而是希望同学们在完成作业时会有自己的思考，真正有所收获。</p>
+      <p>抄袭政策：本课程的作业应主要由原创作品组成。大家可以在他人作品的基础上进行构建（包括第三方库、公开的源代码示例和设计理念）。然而，需要引用所有使用的来源，如果不增加相应的引用会视为抄袭。</p>
+
+      <h2 id="resources">资源</h2>
+      <p>请查看资源页面，以获取可视化工具、相关网站和软件开发技巧。</p>
+      <ul>
+        <li><a href="resources.html">D3可视化库编程</a></li>
+        <li><a href="resources.html">Vega-Lite可视化库编程</a></li>
+        <li><a href="resources.html">Tableau可视化库教程</a></li>
+        <li><a href="resources.html">Vue教程</a></li>
+      </ul>
+      <div class="footer">
+        北京理工大学 计算机学院
+      </div>
+    </div>
+    <br>
+    <br>
+  </div>
+</body>
+</html>

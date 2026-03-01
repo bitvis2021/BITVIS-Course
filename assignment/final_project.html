@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>大数据可视化与可视分析 - Data Visualization and Visual Analysis of Big Data</title>
+  <meta name="robots" content="index,follow">
+  <link rel="stylesheet" type="text/css" href="../assets/css/fonts.css">
+  <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+  <script src="../assets/js/jquery.js"></script>
+  <script src="../assets/js/bootstrap.min.js"></script>
+  <script>
+    var toggleReading = function() {
+      $(".reading").toggleClass('hidden');
+    }
+  </script>
+</head>
+<body data-spy="scroll" data-target=".navbar" id="about">
+  <div class="content">
+    <div class="title">
+      大数据可视化与可视分析 2026年春季课程（本科生）
+    </div>
+    <div class="band"></div>
+    <script>
+      $(function() {
+        var thumbs = [
+          '1minard', '2va', '3perception', '4hd', '5treemap', '6nodetrix',
+          '7vegalite', '8interaction', '9wordcloud', '10immersive',
+          '11tablelens', '12geospatial'
+        ];
+        for (var i = 0; i < thumbs.length; i++) {
+          $(".band").append('<a href="" class="thumb" style="background-image:url(../images/' + thumbs[i] + '.png)" title=' + thumbs[i] + '></a>');
+          if (i === (thumbs.length / 2 - 1)) {
+            $(".band").append("<br />")
+          }
+        }
+      });
+    </script>
+    <br>
+    <div class="sidebar">
+      <div>
+        <h1><<< <a href="../index.html">课程主页</a></h1>
+      </div>
+    </div>
+    <br>
+    <div class="article">
+      <h1>课程设计</h1>
+      <p>
+        期末课程设计的目的是为了让同学们掌握设计、实现和部署交互式可视化作品的实践经验。
+        你的项目应解决具体的数据分析问题，并提出创新性解决方案。
+        最终成果将以可探索的解释性内容形式呈现，部署为交互式网页。项目团队应由1-4人组成。
+
+        除在线的交互式可视化系统外，同学们需要展示最终成果。
+        本课程的最后一堂课程将举办项目演示，课程的所有同学相互分享作品。
+
+        在开始手项目前，建议先了解成功可视化项目的设计要素并警惕常见陷阱。
+        我们推荐阅读Tamara Munzner的论文《A Nested Model for Visualization Design and Validation》。
+        该论文是课程后期的必读材料，不妨提前研读！
+      </p>
+      <p>
+        你的任务是创建一个可交互探索的数据文档，这个文档支持向读者阐述丰富的主题，并且支持用户的交互。
+        这个互动式文档的主题可来自于感兴趣的任意领域，比如经济，金融，社会学，新闻等等；
+        这个交互式文档的重点在于制作一个或多个交互式图表，并通过说明性文本或注释实现图表间的关联，进而支持用户的探索。
+        我们强烈建议你聚焦于高度可视化及/或交互式的体验设计，而非要求读者阅读大量文章文本。
+      </p>
+      <p>
+        你可以参考下面的案例：
+        <ul>
+          <li><a href="https://mbtaviz.github.io/">波士顿地铁可视化</a></li>
+          <li><a href="https://www.washingtonpost.com/graphics/2020/world/corona-simulator/">疫情传播模拟可视化</a></li>
+        </ul>
+      </p>
+      <p>
+        你可以参考一些网站，上面有很多优秀的案例：
+        <ul>
+          <li><a href="https://explorabl.es/">explorabl.es网站</a></li>
+          <li><a href="https://idyll-lang.org/gallery">Idyll gallery网站</a></li>
+        </ul>
+      </p>
+      <p>
+        你可以参考<a href="https://worrydream.com/">Bret Victor的网站</a>的一些资料，获得一些灵感，
+        他的作品大大推广了<a href="https://worrydream.com/ExplorableExplanations/">交互式文章</a>。
+      </p>
+      <p>
+        本次作业的一项挑战是合理规划任务范围，确保能在三周时间内完成。
+        重点设计一个范围有限但引人入胜的可视化方案，支持用户围绕几个关键维度进行交互式探索。
+        <a href=“https://www.babynamewizard.com/namevoyager-expert”>NameVoyager</a>
+        应用程序是一个典型的案例，采用简洁而优雅的交互设计，实现了引人入胜的探索体验。
+        <b>相比于企图包罗万象却设计松散的可视化，聚焦明确且实现精良的交互式图表更值得推崇！</b>
+      </p>
+      
+      <h2>小组合作</h2>
+      <p>
+        本次作业要求以<strong>1-2人小组</strong>形式完成。
+        建议寻找能延续合作至课程期末项目的伙伴。
+      </p>
+
+      <h2 id="schedule">课程作业的具体要求</h2>
+      <p>
+        设计一个交互式图表，旨在帮助理解您自选数据集中的一个引人入胜的问题。
+        为确定数据子集及最具潜力的交互选项，您可能需要进行额外的探索性分析。
+        数据的哪些方面能揭示最有趣的发现或故事？
+        不必试图传达数据的所有信息：请聚焦于一个引人入胜的数据子集。
+      </p>
+      <p>
+        你的图表必须包含支持探索的交互功能。
+        可采用的技术包括平移、缩放、刷选、按需显示细节（如工具提示）、动态查询过滤器以及切换不同指标的显示。
+        你也可自由考虑添加高亮标注、注释或其他叙事功能，以突出特定关注点并提供额外背景信息。
+      </p>
+      <p>
+        实现交互式图表并部署至网络。本作业建议使用D3.js，Vega-Lite，Vue等代码库。
+        图表不应依赖定制化服务器端支持，仅需从静态数据文件或公共网络API加载数据。
+      </p>
+      <p>
+        请通过Github Pages托管项目仓库中的可视化成果。
+        建议将所有内容（开发文件与网站）置于主分支：可从根目录或“/docs”目录提供网站服务。
+        仓库必须包含可视化工具的源代码。
+      </p>
+      <p>
+        除部署的网页外，您还需提交包含以下内容的说明文档：
+        <ul>
+            <li>您的可视化方案旨在解答什么问题？</li>
+            <li>设计决策的依据。如何选择特定的可视化编码与交互技术？考虑过哪些替代方案？最终决策依据是什么？</li>
+            <li>外部资源引用。务必列出所用数据源。若作品改编或基于现有可视化案例，请同时注明出处。</li>
+            <li>开发流程概述。描述团队成员分工情况，并包含对开发过程的评述，包括回答以下问题： 开发应用程序耗时约多少（以工时计）？哪些环节耗时最多？</li>
+            <li>说明文档可与可视化作品置于同一页面，或链接至独立文件（同样托管于A3项目的GitLab页面）。若将说明文档作为文本文件存放于GitLab仓库或仓库README中，将导致扣分。</li>
+        </ul>
+      </p>
+
+      <h2 id="schedule">推荐数据集</h2>
+      <p>本次课程作业不推荐数据集，推荐大家寻找自己感兴趣的、希望探索的数据集。当然也可以使用课程作业一页面推荐的数据集，</p>
+
+      <h2>课程评分</h2>
+        本次作业的满分为40分，推荐同学们做到下面的要求：
+       <ul>
+            <li>高级交互技术</li>
+            <li>创新可视化元素</li>
+            <li>有效的多视图协调</li>
+            <li>精妙且优雅的图形设计</li>
+            <li>富有洞见且引人入胜的探索体验</li>
+       </ul>
+      <p>
+        对于超越作业要求的项目，我们将给予加分。
+      </p>
+
+      <h2>项目的关键时间点</h2>
+      <p>同学们需要关注课程设计的以下关键时间点：</p>
+      <ul>
+        <li>
+          <strong>确定课程设计选题</strong>
+          提交选定课题、数据集及团队成员。我们将为每个项目创建新的Github仓库。
+        </li>
+        <li>
+          <strong>原型里程碑</strong> 
+          开发可测试的项目原型，并参照A3作业要求通过GitLab页面发布。
+          该原型将用于获取设计反馈。
+          此时项目无需达到“完整”状态，但需具备以下要素：项目整体架构、核心可视化与交互功能的粗略原型，以及基础说明文本。
+        </li>
+        <li>
+          <strong>演示视频与原型系统演示</strong>
+          必须制作时长不超过90秒的演示视频，介绍并阐释项目内容。
+          视频可采用项目演示配解说形式，并可酌情添加其他内容。
+          演示视频将于3月12日课堂上播放。视频制作指南详见此处。
+          最终各个小组提交的项目演示视频将发布在B站课程主页
+        </li>
+        <li>
+          <strong>最终成果提交（课程结束后一周）</strong>
+          发布最终项目网页。视频会议反馈后可进行页面最终调整。
+          最终成果提交要求详见此处。
+        </li>
+      </ul>
+
+      <h2>提交方式</h2>
+        <b>具体的作业提交方式待定</b>
+    </div>
+    <br>
+    <br>
+  </div>
+</body>
+</html>

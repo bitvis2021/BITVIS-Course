@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>大数据可视化与可视分析 - Data Visualization and Visual Analysis of Big Data</title>
+  <meta name="robots" content="index,follow">
+  <link rel="stylesheet" type="text/css" href="../assets/css/fonts.css">
+  <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+  <script src="../assets/js/jquery.js"></script>
+  <script src="../assets/js/bootstrap.min.js"></script>
+  <script>
+    var toggleReading = function() {
+      $(".reading").toggleClass('hidden');
+    }
+  </script>
+</head>
+<body data-spy="scroll" data-target=".navbar" id="about">
+  <div class="content">
+    <div class="title">
+      大数据可视化与可视分析 2026年春季课程（本科生）
+    </div>
+    <div class="band"></div>
+    <script>
+      $(function() {
+        var thumbs = [
+          '1minard', '2va', '3perception', '4hd', '5treemap', '6nodetrix',
+          '7vegalite', '8interaction', '9wordcloud', '10immersive',
+          '11tablelens', '12geospatial'
+        ];
+        for (var i = 0; i < thumbs.length; i++) {
+          $(".band").append('<a href="" class="thumb" style="background-image:url(../images/' + thumbs[i] + '.png)" title=' + thumbs[i] + '></a>');
+          if (i === (thumbs.length / 2 - 1)) {
+            $(".band").append("<br />")
+          }
+        }
+      });
+    </script>
+    <br>
+    <div class="sidebar">
+      <div>
+        <h1><<< <a href="../index.html">课程主页</a></h1>
+      </div>
+    </div>
+    <br>
+    <div class="article">
+      <h1>课程作业1："好坏"可视化</h1>
+      <p>
+        随着可视化在公众获取新闻和信息的方式中扮演着越来越重要的角色，认识到可视化设计如何影响观众对数据的结论和记忆显得尤为重要。
+        在本作业中，你将选定一个感兴趣的数据集，并设计两个静态可视化图表来传达数据信息，也就是作业题目中描述的“好的可视化”和“坏的可视化”。
+        ”好的可视化“是指对数据分析理解的真实高效的可视化，
+        而“坏的可视化”则是一个旨在误导观众的欺骗性可视化图表，设计挑战在于在不使用明显数据错误或遗漏的情况下进行误导。
+      </p>
+
+      <h2 id="schedule">具体任务</h2>
+      <p>
+      你的任务是为你选择的数据集设计两个静态（单图）可视化图表。
+      一个可视化图表应旨在有效且真诚地传达关于数据的见解，而另一个可视化图表的设计则应旨在误导观众得出错误的结论。
+      你还需要提供一篇简短的文字（不超过4段），描述你为这两个可视化图表所做的设计原理。
+      </p>
+      <p>
+        对于本次作业，我们将把以下情况视为严谨的可视化：
+        <ul>
+          <li>可视化结果清晰且易于普通大众理解。</li>
+          <li>视觉编码对于预期任务而言是恰当且有效的。</li>
+          <li>数据转换被清晰且透明地传达底层数据源（以及任何潜在偏差）被清晰传达。</li>
+        </ul>
+      </p>
+      <p>
+        另一方面，具有欺骗性的可视化可能表现出以下特性：
+        <ul>
+          <li>视觉映射故意不恰当或具有误导性。</li>
+          <li>标题被扭曲，以故意影响观众的感知。</li>
+          <li>数据转换被错误地传达，导致观众得出错误的结论。</li>
+          <li>数据被故意过滤或隐藏，以误导观众。</li>
+          <li>数据被故意以误导的方式编码，导致观众得出错误的结论。</li>
+        </ul>
+      </p>
+      <p>
+        对于高效的可视化，你的目标是尽可能清晰高效，从而帮助用户回答预期的问题。
+        对于欺骗性的可视化，你的目标是欺骗用户，让用户相信可视化是正确的且高效的，但是误导用户得出错误的结论。
+        <b>欺骗性可视化的意图不应显而易见，其设计中那些微妙而无效的选择需要观众仔细研读才能察觉。</b>
+      </p>
+      <h2 id="schedule">提交材料</h2>
+      <p>
+        你的报告应包含以下信息：
+        <ul>
+          <li>每项可视化旨在回答的具体问题或者完成的任务</li>
+          <li>每项可视化的设计原理（design rationale）及关键考量因素（design consideration）</li>
+          <li>可视化所用数据源的链接。</li>
+        </ul>
+      </p>
+      <h2 id="schedule">推荐数据源</h2>
+      <p>
+        为减轻大家完成本作业的负担，我们为大家提供部分的数据集或来源，当然大家也可自由选用任意数据集。
+        需要注意：<b>两个可视化作品必须使用同一数据集</b>，但可采用不同的数据变换方式、使用额外数据变量，或为每个可视化选择不同的研究问题。
+        这些数据集特意选取了与政治经济相关的一些话题，因为这类数据往往容易滋生误导性可视化作品。
+      </p>
+      
+      <h3>The World Bank Data, 1960-2018</h3>
+      自1960年以来，世界银行通过气候变化、经济、教育、环境、性别平等、健康以及科学技术等指标持续追踪全球人类发展状况。
+      你可按<a href="https://data.worldbank.org/indicator">指标</a>或<a href="https://data.worldbank.org/country">国家</a>浏览数据。点击指标类别或国家即可下载CSV文件。
+      
+      <h3>Greenhouse Gas Emissions, 1990-2019</h3><a href="https://data-explorer.oecd.org/vis?df[ds]=DisseminateFinalDMZ&df[id]=DSD_AIR_GHG@DF_AIR_GHG&df[ag]=OECD.ENV.EPI">数据下载链接</a>
+      <p> 
+        经济合作与发展组织（OECD）已汇总了所有参与国的排放数据，按污染物（如一氧化碳、甲烷等）和不同来源（如能源、农业等）分类呈现。
+        虽然数据下载的界面操作略微复杂，但你可自由浏览左侧面板中的其他主题（如教育或健康）。
+        可在选定表格顶部点击“导出”按钮下载数据。
+      <p>
+
+      <h3>其他数据来源</h3>
+      <p>
+        以下是一些其他可考虑的数据来源。你也可以自由使用未列在此处的其他数据源。若对数据集适用性有任何疑问，可咨询课程工作人员！
+      </p>
+       <ul>
+        <li><a href=3D"https://data.seattle.gov/">data.seattle.gov</a> - City of Seattle Open Data</li>
+        <li><a href=3D"https://data.wa.gov/">data.wa.gov</a> - State of Washington Open Data</li>
+        <li><a href=3D"https://www.data.gov/">data.gov</a> - U.S. Government Open Datasets</li>
+        <li><a href=3D"https://www.census.gov/data.html">U.S. Census Bureau</a>- Census Datasets</li>
+        <li><a href=3D"https://www.ipums.org/">IPUMS.org</a> - Integrated Census &amp; Survey Data from around the World</li>
+        <li><a href=3D"https://www.fec.gov/data/">Federal Elections Commission</a> - Campaign Finance &amp; Expenditures</li>
+        <li><a href=3D"https://www.faa.gov/data_research/">Federal Aviation Administration</a> - FAA Data &amp; Research</li>
+        <li><a href=3D"ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/">NOAA Daily Weather</a> - NOAA Daily Global Historical Climatology Network Data</li>
+        <li><a href=3D"https://www.yelp.com/dataset">yelp.com/dataset</a> - Yelp Open Dataset</li>
+        <li><a href=3D"https://github.com/fivethirtyeight/data/">fivethirtyeight.com</a> - Data and Code behind the Stories and Interactives</li>
+        <li><a href=3D"https://github.com/BuzzFeedNews">Buzzfeed News</a> - Open-source data from BuzzFeed's newsroom</li>
+        <li><a href=3D"https://www.kaggle.com/datasets">Kaggle Datasets</a> - Datasets for Kaggle contests</li>
+        <li><a href=3D"https://observablehq.com/@mkfreeman/teaching-datasets">List of datasets useful for course projects</a> - curated by Mike Freeman</li>
+       </ul>
+
+      <h2>课程评分</h2>
+       本次作业满分为15分。评分将基于以下标准：可视化设计的合理性、欺骗性可视化的伪装程度以及撰写说明的质量。以下情况可能会导致扣分：
+       <ul>
+        <li>高效可视化与欺骗性可视化具有非常明显的区分度</li>
+        <li>视觉编码未能有效实现既定目标</li>
+        <li>缺少核心分析问题的标注</li>
+        <li>报告中缺少或未完整阐述设计依据。</li>
+      </ul>
+      <p>
+        对于超越作业要求、制作出有效（且具有欺骗性）图表的作品，我们将给予加分。
+        优秀案例需要注意：优秀的可视化设计、有效的注释及其他叙事手法、创造性，或需通过报告才能准确识别可视化中误导性设计元素的欺骗性设计。
+      </p>
+
+      <h2>提交方式</h2>
+      注意，第一次作业是一项个人作业，不需要组队完成。
+      预计北京时间1月27日晚上11:59前提交完成的可视化图像及说明文档，请尽量避免迟交；
+      请上传两张可视化设计图像文件（PNG或JPG格式），文件名必须严格遵循：“a1_earnest.png”（高效图表）与“a1_deceptive.png”（欺骗图表）。文件名中请勿包含姓名或uwnetid。
+      请严格遵循命名规范，确保图像文件扩展名正确（.png或.jpg），并保证图像尺寸适宜浏览。观众不应需要放大或滚动才能查看您的提交内容！
+      此外，请将说明文档以纯文本文件形式提交，命名为“readme.txt”，内容需遵循上述要求。
+      <b>具体地作业提交方式待定</b>
+    </div>
+    <br>
+    <br>
+  </div>
+</body>
+</html>
