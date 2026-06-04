@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VISClass 2026 Gallery - 大数据可视化与可视分析</title>
+  <meta name="robots" content="index,follow">
+  <link rel="stylesheet" type="text/css" href="../assets/css/fonts.css">
+  <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+  <script src="../assets/js/jquery.js"></script>
+  <script src="../assets/js/bootstrap.min.js"></script>
+  <style>
+    body {
+      max-width: 1300px;
+      width: auto;
+    }
+
+    .gallery-article {
+      margin-right: 35px;
+    }
+
+    .gallery-intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 210px;
+      gap: 22px;
+      align-items: end;
+      border-bottom: 1px solid #ccc;
+      margin: 0 0 24px 0;
+      padding-bottom: 16px;
+    }
+
+    .gallery-intro h1 {
+      font-size: 24pt;
+      line-height: 1.18em;
+      margin: 0 0 8px 0;
+    }
+
+    .gallery-intro p {
+      color: #33333f;
+      margin-bottom: 0;
+    }
+
+    .gallery-count {
+      border-left: 4px solid #492a7c;
+      padding: 8px 0 8px 14px;
+      color: #555;
+      font-size: 0.9em;
+    }
+
+    .gallery-count strong {
+      display: block;
+      color: #492a7c;
+      font-size: 26pt;
+      font-weight: normal;
+      line-height: 1em;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .project-card {
+      border: 1px solid #ddd;
+      background: #fff;
+      border-radius: 6px;
+      overflow: hidden;
+      min-height: 365px;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+    }
+
+    .project-card:hover {
+      border-color: #bda8e9;
+      box-shadow: 0 6px 16px rgba(51, 51, 63, 0.12);
+      transform: translateY(-2px);
+    }
+
+    .project-teaser {
+      position: relative;
+      display: block;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: #ededed;
+      overflow: hidden;
+    }
+
+    .project-teaser img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 200ms ease;
+    }
+
+    .project-card:hover .project-teaser img {
+      transform: scale(1.025);
+    }
+
+    .project-teaser.empty {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #999;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0;
+    }
+
+    .project-teaser.empty::after {
+      content: "Teaser 待补充";
+    }
+
+    .project-number {
+      position: absolute;
+      left: 10px;
+      top: 10px;
+      min-width: 34px;
+      height: 28px;
+      line-height: 28px;
+      text-align: center;
+      color: #fff;
+      background: rgba(73, 42, 124, 0.92);
+      border-radius: 4px;
+      font-size: 13px;
+    }
+
+    .project-body {
+      padding: 13px 14px 14px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+    }
+
+    .project-title {
+      color: #492a7c;
+      font-size: 14pt;
+      line-height: 1.25em;
+      margin: 0;
+    }
+
+    .project-members {
+      color: #333;
+      min-height: 2.9em;
+      word-break: break-word;
+    }
+
+    .project-members.missing {
+      color: #999;
+    }
+
+    .project-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: auto;
+    }
+
+    .project-links a,
+    .project-links span {
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      width: 34px;
+      height: 32px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #33333f;
+      background: #fafafa;
+    }
+
+    .project-links a:hover {
+      color: #7533f4;
+      border-color: #c9b9ef;
+      background: #f7f3ff;
+      text-decoration: none;
+    }
+
+    .project-links span {
+      color: #aaa;
+      cursor: not-allowed;
+    }
+
+    .project-links svg {
+      width: 18px;
+      height: 18px;
+      display: block;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .project-links .github-icon {
+      fill: currentColor;
+      stroke: none;
+    }
+
+    .loading-note,
+    .gallery-error {
+      color: #777;
+      padding: 18px 0;
+    }
+
+    .gallery-error {
+      color: #8a3a3a;
+    }
+
+    @media (max-width: 760px) {
+      .content {
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+
+      .thumb {
+        width: 50%;
+        height: 105px;
+      }
+
+      .sidebar {
+        float: none;
+        width: auto;
+        margin-bottom: 18px;
+      }
+
+      .menu {
+        width: auto;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 16px;
+      }
+
+      .menu li {
+        padding-bottom: 0;
+      }
+
+      .article,
+      .gallery-article {
+        margin-left: 0;
+        margin-right: 0;
+      }
+
+      .gallery-intro {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-count {
+        border-left-width: 3px;
+      }
+
+      .project-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 14px;
+      }
+    }
+  </style>
+</head>
+<body data-spy="scroll" data-target=".navbar" id="about">
+  <div class="content">
+    <div class="title">
+      <a href="../index.html">大数据可视化与可视分析 2026年春季课程（本科生）</a>
+    </div>
+    <div class="band"></div>
+    <script>
+      $(function() {
+        var thumbs = [
+          '1minard', '2va', '3perception', '4hd', '5treemap', '6nodetrix',
+          '7vegalite', '8interaction', '9wordcloud', '10immersive',
+          '11tablelens', '12geospatial'
+        ];
+        for (var i = 0; i < thumbs.length; i++) {
+          $(".band").append('<a href="../index.html#week' + Math.min(i + 1, 10) + '" class="thumb" style="background-image:url(../images/' + thumbs[i] + '.png)" title="' + thumbs[i] + '"></a>');
+          if (i === (thumbs.length / 2 - 1)) {
+            $(".band").append("<br />");
+          }
+        }
+      });
+    </script>
+    <br>
+    <div class="sidebar">
+      <div>
+        <h1>&lt;&lt;&lt; <a href="../index.html">课程主页</a></h1>
+      </div>
+      <div>
+        <h1>Gallery</h1>
+        <ul class="menu nav">
+          <li><a href="#about">总览</a></li>
+          <li><a href="#projects">作品</a></li>
+          <li><a href="../assignment/final_project.html">课程设计</a></li>
+        </ul>
+      </div>
+    </div>
+    <br>
+    <div class="article gallery-article">
+      <section class="gallery-intro">
+        <div>
+          <h1>可视化作品集（VIS Project Gallery）</h1>
+          <p>
+            本页面展示了2026年大数据可视化与可视分析课程中各课程设计小组的可视分析作品，作品覆盖了城市、地震、环境、教育、就业等不同主题。
+          </p>
+        </div>
+        <div class="gallery-count">
+          <strong id="group-count">35</strong>
+          个课程设计小组
+        </div>
+      </section>
+
+      <h2 id="projects">学生课程设计作品</h2>
+      <div id="gallery-status" class="loading-note">正在载入作品信息...</div>
+      <div id="project-grid" class="project-grid" aria-live="polite"></div>
+    </div>
+    <br>
+    <br>
+  </div>
+
+  <script>
+    (function() {
+      var MIN_GROUPS = 35;
+      var CSV_PATH = "visclass.csv";
+      var RESOURCE_PATH = "resources/";
+      var TEASERS = {
+        1: "1-纽约宜居方程：数据驱动的街区选址引擎.png",
+        2: "2-谁真正实现了碳脱钩.png",
+        3: "3-地震灾害科学可视化.png",
+        4: "4-究竟是哪坏了？——集群压力判断可视化.png",
+        5: "5-Steam定价心理学.png",
+        6: "6-疫情传播与政策响应间的动态博弈.png",
+        7: "7-论文研究热点可视化.png",
+        8: "8-基于决策树的异常检测方法的可视化实践.jpg",
+        9: "9-解析全球农业格局：探究各国农业生产供需规律.png",
+        10: "10-大学生就业分析可视化项目.png",
+        11: "11-生命演化剧场.png",
+        12: "12-全球地震活动交互式探索.png",
+        13: "13-全球温室气体排放趋势探索器.png",
+        14: "14-追影：贸易全球化中的碳责任追踪.png",
+        15: "15-全球温室气体人均排放量分析.png",
+        16: "16-气候变化的责任不平等分析.png",
+        17: "17-CFPS Mobility Lab：中国教育代际流动与城乡迁移的交互式可视化分析.png",
+        18: "18-奥运成绩百年演变.png",
+        20: "20-震源深度与震级关系的可视化分析.png",
+        21: "21-EV Crossroads.png",
+        22: "22-不同人群的阅读习惯分析.png",
+        23: "23-多国男女性别工资差距可视化系统.png",
+        25: "25-流媒体争霸.jpg",
+        26: "26-全球人均收入与预期寿命关系交互式可视化.png",
+        28: "28-全球婴儿死亡率原因可视化分析.png",
+        29: "29-电影偏好趋势.png",
+        30: "30-社交电商用户行为分析.png",
+        31: "31-世界各国温室气体排放分析.png",
+        33: "33-Global Sentiment Flow-Mapper.png",
+        34: "34-蛛网之下：全球制造业对中国供应链的结构性依赖.png",
+        35: "35-新闻舆论传播模拟器.png"
+      };
+      var ICONS = {
+        github: '<svg class="github-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0.2C3.6 0.2 0 3.8 0 8.2c0 3.5 2.3 6.5 5.5 7.6 0.4 0.1 0.5-0.2 0.5-0.4v-1.4c-2.2 0.5-2.7-0.9-2.7-0.9-0.4-0.9-0.9-1.2-0.9-1.2-0.7-0.5 0.1-0.5 0.1-0.5 0.8 0.1 1.2 0.8 1.2 0.8 0.7 1.2 1.9 0.9 2.3 0.7 0.1-0.5 0.3-0.9 0.5-1.1-1.8-0.2-3.6-0.9-3.6-4 0-0.9 0.3-1.6 0.8-2.2-0.1-0.2-0.4-1 0.1-2.1 0 0 0.7-0.2 2.2 0.8 0.6-0.2 1.3-0.3 2-0.3s1.4 0.1 2 0.3c1.5-1 2.2-0.8 2.2-0.8 0.5 1.1 0.2 1.9 0.1 2.1 0.5 0.6 0.8 1.3 0.8 2.2 0 3.1-1.9 3.8-3.6 4 0.3 0.2 0.5 0.7 0.5 1.4v2.2c0 0.2 0.1 0.5 0.5 0.4 3.2-1.1 5.5-4.1 5.5-7.6 0-4.4-3.6-8-8-8z"/></svg>',
+        site: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M2 12h20"></path><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>'
+      };
+
+      function clean(value) {
+        return (value || "").replace(/^\uFEFF/, "").trim();
+      }
+
+      function parseCSV(text) {
+        var rows = [];
+        var row = [];
+        var field = "";
+        var inQuotes = false;
+
+        for (var i = 0; i < text.length; i++) {
+          var ch = text[i];
+          var next = text[i + 1];
+
+          if (ch === '"' && inQuotes && next === '"') {
+            field += '"';
+            i++;
+          } else if (ch === '"') {
+            inQuotes = !inQuotes;
+          } else if (ch === "," && !inQuotes) {
+            row.push(field);
+            field = "";
+          } else if ((ch === "\n" || ch === "\r") && !inQuotes) {
+            if (ch === "\r" && next === "\n") {
+              i++;
+            }
+            row.push(field);
+            if (row.some(function(cell) { return clean(cell) !== ""; })) {
+              rows.push(row);
+            }
+            row = [];
+            field = "";
+          } else {
+            field += ch;
+          }
+        }
+
+        row.push(field);
+        if (row.some(function(cell) { return clean(cell) !== ""; })) {
+          rows.push(row);
+        }
+
+        return rows;
+      }
+
+      function recordsFromCSV(text) {
+        var rows = parseCSV(text);
+        var records = {};
+
+        rows.slice(1).forEach(function(row, index) {
+          var id = parseInt(clean(row[0]), 10) || index + 1;
+          records[id] = {
+            id: id,
+            page: clean(row[1]),
+            github: clean(row[2]),
+            members: clean(row[3])
+          };
+        });
+
+        return records;
+      }
+
+      function normalizeUrl(url) {
+        url = clean(url);
+        if (!url) {
+          return "";
+        }
+        if (/^https?:\/\//i.test(url)) {
+          return url;
+        }
+        return "https://" + url;
+      }
+
+      function makeIconLink(url, label, icon) {
+        var normalizedUrl = normalizeUrl(url);
+        var title = normalizedUrl ? label : label + "待补充";
+        var iconSvg = ICONS[icon] || "";
+
+        if (!normalizedUrl) {
+          return '<span class="project-link-disabled" title="' + escapeAttribute(title) + '" aria-label="' + escapeAttribute(title) + '">' + iconSvg + '</span>';
+        }
+        return '<a href="' + escapeAttribute(normalizedUrl) + '" target="_blank" rel="noopener" title="' + escapeAttribute(title) + '" aria-label="' + escapeAttribute(title) + '">' + iconSvg + '</a>';
+      }
+
+      function maxRecordId(records) {
+        return Object.keys(records).reduce(function(maxId, key) {
+          var id = parseInt(key, 10);
+          return id > maxId ? id : maxId;
+        }, MIN_GROUPS);
+      }
+
+      function escapeHTML(value) {
+        return clean(value)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#39;");
+      }
+
+      function escapeAttribute(value) {
+        return escapeHTML(value).replace(/`/g, "&#96;");
+      }
+
+      function teaserInfo(id) {
+        var fileName = TEASERS[id];
+        var title = fileName
+          ? fileName
+          .replace(/\.[^.]+$/, "")
+          .replace(/^\d+\s*[-_－—]\s*/, "")
+          .trim()
+          : "";
+
+        return {
+          path: RESOURCE_PATH + (fileName || id + ".png"),
+          title: title || "第 " + id + " 组"
+        };
+      }
+
+      function render(records) {
+        var $grid = $("#project-grid");
+        $grid.empty();
+        var totalGroups = maxRecordId(records);
+        $("#group-count").text(totalGroups);
+
+        for (var id = 1; id <= totalGroups; id++) {
+          var record = records[id] || {};
+          var teaser = teaserInfo(id);
+          var members = record.members ? escapeHTML(record.members) : "组员信息待补充";
+          var memberClass = record.members ? "project-members" : "project-members missing";
+          var teaserLabel = record.page ? "访问第 " + id + " 组项目网站" : "第 " + id + " 组 teaser";
+          var teaserElement = record.page
+            ? '<a class="project-teaser" href="' + escapeAttribute(record.page) + '" target="_blank" rel="noopener" aria-label="' + teaserLabel + '"><img src="' + escapeAttribute(teaser.path) + '" alt="第 ' + id + ' 组课程设计 teaser" onerror="this.parentNode.classList.add(\'empty\'); this.parentNode.removeAttribute(\'href\'); this.remove();"><span class="project-number">' + id + '</span></a>'
+            : '<div class="project-teaser"><img src="' + escapeAttribute(teaser.path) + '" alt="第 ' + id + ' 组课程设计 teaser" onerror="this.parentNode.classList.add(\'empty\'); this.remove();"><span class="project-number">' + id + '</span></div>';
+
+          $grid.append(
+            '<article class="project-card">' +
+              teaserElement +
+              '<div class="project-body">' +
+                '<h3 class="project-title">' + escapeHTML(teaser.title) + '</h3>' +
+                '<div class="' + memberClass + '">' + members + '</div>' +
+                '<div class="project-links">' +
+                  makeIconLink(record.page, "作品网站", "site") +
+                  makeIconLink(record.github, "GitHub", "github") +
+                '</div>' +
+              '</div>' +
+            '</article>'
+          );
+        }
+        $("#gallery-status").hide();
+      }
+
+      $.ajax({
+        url: CSV_PATH,
+        dataType: "text",
+        cache: false
+      }).done(function(text) {
+        render(recordsFromCSV(text));
+      }).fail(function() {
+        $("#gallery-status")
+          .removeClass("loading-note")
+          .addClass("gallery-error")
+          .text("作品信息暂时无法载入。");
+        render({});
+      });
+    })();
+  </script>
+</body>
+</html>
